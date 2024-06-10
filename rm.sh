@@ -1,5 +1,5 @@
 #!/bin/bash
-STORE=$(mktemp)
+STORE=$(mktemp -d)
 FILES=$@
 mv $FILES $STORE
 echo "Files are removed savely"
