@@ -29,9 +29,14 @@ case $command in
   *)
     STORE=$(mktemp -d)
     FILES=$@
-    mv $FILES $STORE
-    echo "Files are removed savely"
-    echo $STORE $FILES   >> ~/.cache/save_rm.cache
+    for FILE in $FILES
+      do
+        if [[ -f "$FILE" ]]; then
+          mv $FILES $STORE
+          echo "Files are removed savely"
+          echo $STORE $FILES   >> ~/.cache/save_rm.cache
+        fi
+      done
     exit 0
     ;;
 esac
