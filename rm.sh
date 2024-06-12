@@ -31,10 +31,11 @@ case $command in
     FILES=$@
     for FILE in $FILES
       do
-        if [[ -f "$FILE" ]]; then
-          mv $FILES $STORE
+        if [[ -f "$FILE" || -d "$FILE" ]]; then
+          mv $FILE $STORE
+          SIZE= df -h $STORE
           echo "Files are removed savely"
-          echo $STORE $FILES   >> ~/.cache/save_rm.cache
+          echo $STORE $SIZE $FILE   >> ~/.cache/save_rm.cache
         fi
       done
     exit 0
