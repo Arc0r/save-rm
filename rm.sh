@@ -24,8 +24,9 @@ case $command in
     while read line
     do 
       rm $(echo $line|awk '{print $2}')
-    done < .cache/save_rm.cache
+    done < $CACHEFILE
     echo "Removed cached files"
+    rm $CACHEFILE
     exit 0
     ;;
   -h)
@@ -40,13 +41,12 @@ case $command in
     STORE=$(mktemp -d)
     FILES=$@
     for FILE in $FILES
-      $FILE = readlink -f $FILE
       do
         if [[ -f "$FILE" || -d "$FILE" ]]; then
           mv $FILE $STORE/
           SIZE=$(du -sh $STORE)
           echo "Files are removed savely"
-          echo $SIZE $FILE   >> $CACHEFILE
+          echo $SIZE "$(readlink -f $FILE)"   >> $CACHEFILE
         fi
       done
     exit 0
