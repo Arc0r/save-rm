@@ -17,16 +17,17 @@ CACHEFILE="/tmp/cache_saverm"
 # Check the command and take appropriate action
 case $command in
   -l)
+    touch $CACHEFILE
     cat $CACHEFILE
     exit 0
     ;;
   -c)
     while read line
     do 
-      rm $(echo $line|awk '{print $2}')
+      rm -rf $(echo $line|awk '{print $2}')
     done < $CACHEFILE
     echo "Removed cached files"
-    rm $CACHEFILE
+    rm -rf $CACHEFILE
     exit 0
     ;;
   -h)
