@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]; then
   # No arguments were passed, so print a help message
-  echo "Usage: save_rm.sh [command|filename]"
+  echo "Usage: save_rm.sh [command] [filename]"
   echo "Commands:"
   echo "  -l    List the deleted files."
   echo "  -c    Clean the cached files."
@@ -31,7 +31,7 @@ case $command in
     exit 0
     ;;
   -h)
-    echo "Usage: save_rm.sh [command|filename]"
+    echo "Usage: save_rm.sh [command] [filename]"
     echo "Commands:"
     echo "  -l    List the deleted files."
     echo "  -c    Clean the cached files."
