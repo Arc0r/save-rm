@@ -12,7 +12,7 @@ fi
 
 # Get the command from the first argument
 command="$1"
-CACHEFILE="/tmp/cache_saverm"
+CACHEFILE="/tmp/save_rm$UID.cache"
 
 # Check the command and take appropriate action
 case $command in
@@ -24,10 +24,10 @@ case $command in
   -c)
     while read line
     do 
-      rm -rf $(echo $line|awk '{print $2}')
+      /usr/bin/rm -rf $(echo $line|awk '{print $2}')
     done < $CACHEFILE
     echo "Removed cached files"
-    rm -rf $CACHEFILE
+    /usr/bin/rm -rf $CACHEFILE
     exit 0
     ;;
   -h)
